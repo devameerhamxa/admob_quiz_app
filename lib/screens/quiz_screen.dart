@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/quiz_provider.dart';
@@ -23,9 +25,7 @@ class QuizScreen extends StatelessWidget {
               context.read<AdProvider>().showInterstitialAd();
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const ResultScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const ResultScreen()),
               );
             });
             return const Center(child: CircularProgressIndicator());
@@ -39,7 +39,8 @@ class QuizScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 LinearProgressIndicator(
-                  value: (quizProvider.currentQuestionIndex + 1) /
+                  value:
+                      (quizProvider.currentQuestionIndex + 1) /
                       quizProvider.totalQuestions,
                   backgroundColor: Colors.grey[300],
                   valueColor: AlwaysStoppedAnimation<Color>(

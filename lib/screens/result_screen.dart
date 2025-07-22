@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/quiz_provider.dart';
@@ -108,7 +110,9 @@ class ResultScreen extends StatelessWidget {
                             text: 'Home',
                             onPressed: () {
                               Navigator.popUntil(
-                                  context, (route) => route.isFirst);
+                                context,
+                                (route) => route.isFirst,
+                              );
                             },
                             backgroundColor: Colors.grey[600],
                           ),

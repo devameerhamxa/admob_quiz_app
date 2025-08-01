@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_admob/models/ad_state_model.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -27,6 +28,9 @@ class AdProvider with ChangeNotifier {
         notifyListeners();
       },
       onAdFailedToLoad: (ad, error) {
+        log('Ad failed to load: ${error.code} - ${error.message}');
+        log('Domain: ${error.domain}');
+        log('Response Info: ${error.responseInfo}');
         _adState = _adState.copyWith(bannerAdState: AdLoadState.failed);
         ad.dispose();
         notifyListeners();

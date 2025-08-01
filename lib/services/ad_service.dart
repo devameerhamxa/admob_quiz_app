@@ -4,14 +4,23 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdService {
   // Test Ad Unit IDs (replace with your actual IDs in production)
-  static const String bannerAdUnitId = 'ca-app-pub-5549085276815653/3179681112';
+  static const String bannerAdUnitId = 'ca-app-pub-3940256099942544/9214589741';
   static const String interstitialAdUnitId =
-      'ca-app-pub-5549085276815653/3890127557';
+      'ca-app-pub-3940256099942544/4411468910';
   static const String rewardedAdUnitId =
-      'ca-app-pub-5549085276815653/4718109594';
+      'ca-app-pub-3940256099942544/5224354917';
 
   static Future<void> initialize() async {
+    // Configure test settings first
+    RequestConfiguration configuration = RequestConfiguration(
+      testDeviceIds: <String>[],
+      tagForChildDirectedTreatment: TagForChildDirectedTreatment.no,
+      tagForUnderAgeOfConsent: TagForUnderAgeOfConsent.no,
+    );
+    MobileAds.instance.updateRequestConfiguration(configuration);
+
     await MobileAds.instance.initialize();
+    await Future.delayed(const Duration(seconds: 3));
   }
 
   static BannerAd createBannerAd({
